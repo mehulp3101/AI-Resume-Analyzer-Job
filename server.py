@@ -1,4 +1,63 @@
-            length = int(self.headers.get('Content-Length', '0'))
+import argparse
+import json
+import os
+from http.cookies import SimpleCookie, CookieError
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
+import secrets
+from routes import ROUTES
+from controllers.resume_controller import extract_pdf
+from models.pdf_model import MAX_PDF_BYTES
+from models.session_model import open_session, rotate_session
+from models.user_model import get_user
+from models.saved_job_model import list_saved
+from views.renderer import page
+
+ROOT = Path(__file__).resolve().parent
+MAX_BODY = 1500000
+
+
+class Handler(BaseHTTPRequestHandler):
+    def log_message(self, format, *args):
+        # Avoid logging resume bodies or search queries.
+        pass
+
+    def do_GET(self):
+        self.handle_request('GET')
+
+    def do_POST(self):
+        self.handle_request('POST')
+
+    def respond(self, code, content, session_id=None, content_type='text/html; charset=utf-8'):
+        body = content if isinstance(content, bytes) else b''
+        self.send_response(code)
+        self.send_header('Content-Type', content_type)
+        self.send_header('Cache-Control', 'no-store')
+        self.send_header('X-Content-Type-Options', 'nosniff')
+        self.send_header('Referrer-Policy', 'same-origin')
+        if session_id:
+            cookie = f'rm_session={session_id}; HttpOnly; SameSite=Strict; Path=/'
+            if os.environ.get('RENDER') == 'true':
+                cookie += '; Secure'
+            self.send_header('Set-Cookie', cookie)
+        if code == 303:
+            self.send_header('Location', content)
+        self.send_header('Content-Length', str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def handle_pdf(self, sid, session):
+        def reply(status, payload):
+            self.respond(status, json.dumps(payload).encode('utf-8'), sid, 'application/json; charset=utf-8')
+
+        token = self.headers.get('X-CSRF-Token', '')
+        if not secrets.compare_digest(token.encode('utf-8'), session['csrf'].encode('utf-8')):
+            return reply(403, {'error': 'Reload the analyzer page and try again.'})
+        if self.headers.get_content_type() != 'application/pdf':
+            return reply(415, {'error': 'Choose a PDF resume.'})
+        try:
+           length = int(self.headers.get('Content-Length', '0'))
         except ValueError:
             length = 0
         if length <= 0:
