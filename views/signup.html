@@ -1,0 +1,33 @@
+<div class="auth-layout">
+    <section class="auth-intro"><small>A NEW CHAPTER</small>
+        <h1>Make room for<br>your next role.</h1>
+        <p>Create an account to build your own shortlist of interesting sample jobs.</p>
+        <ul>
+            <li>Account-specific saved jobs</li>
+            <li>Saved jobs remain after restarting the app</li>
+            <li>No extra packages or database setup</li>
+        </ul>
+    </section>
+    <section class="panel auth-card">
+        <h2>Create an account</h2>
+        <p>Start with your name, email and a password.</p>
+        <p class="form-message" role="alert">$message</p>
+        <form method="post" action="/signup">
+            <input type="hidden" name="csrf" value="$csrf">
+            <input type="hidden" name="next" value="$next_to">
+                <label for="name">Full name</label>
+                <input id="name" name="name"
+                autocomplete="name" minlength="2" maxlength="80" value="$name" required>
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" autocomplete="username" maxlength="254"
+                value="$email" required>
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" autocomplete="new-password" minlength="10" maxlength="128" aria-describedby="password-help" required>
+                <p id="password-help" class="note">A long, unique passphrase works well.</p>
+                <label for="confirmation">Confirm password</label>
+                <input id="confirmation" name="confirmation" type="password" autocomplete="new-password" minlength="10" maxlength="128" required>
+                <button class="auth-submit">Create account</button>
+        </form>
+        <p>Already registered? <a href="/login?next=$next_to">Log in</a></p>
+    </section>
+</div>

@@ -1,0 +1,25 @@
+<div class="auth-layout">
+    <section class="auth-intro">
+        <small>WELCOME BACK</small>
+        <h1>Your next step<br />starts here.</h1>
+        <p>Log in to keep your saved jobs together and continue exploring opportunities.</p>
+        <ul>
+            <li>Your own saved-job shortlist</li>
+            <li>Simple skill matching</li>
+            <li>Clear learning opportunities</li>
+        </ul>
+    </section>
+    <section class="panel auth-card">
+        <h2>Log in</h2>
+        <p>Enter the account you created on this app.</p>
+        <p class="form-message" role="alert">$message</p>
+        <form method="post" action="/login">
+            <input type="hidden" name="csrf" value="$csrf" /><input type="hidden" name="next" value="$next_to" /><label
+                for="email">Email address</label>
+                <input id="email" name="email" type="email" autocomplete="username" maxlength="254" value="$email" required/>
+                <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" maxlength="128" required/><button class="auth-submit">Log in</button>
+        </form>
+        <p>New here? <a href="/signup?next=$next_to">Create an account</a></p>
+    </section>
+</div>

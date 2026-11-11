@@ -1,0 +1,54 @@
+{
+  "HTML": [
+    "html",
+    "html5"
+  ],
+  "CSS": [
+    "css",
+    "css3"
+  ],
+  "JavaScript": [
+    "javascript"
+  ],
+  "React": [
+    "react",
+    "reactjs",
+    "react.js"
+  ],
+  "Python": [
+    "python"
+  ],
+  "SQL": [
+    "sql",
+    "mysql",
+    "postgresql",
+    "sqlite"
+  ],
+  "PHP": [
+    "php"
+  ],
+  "Git": [
+    "git",
+    "github"
+  ],
+  "Node.js": [
+    "node.js",
+    "nodejs",
+    "node js"
+  ],
+  "Excel": [
+    "excel"
+  ],
+  "Customer Service": [
+    "customer service"
+  ],
+  "Troubleshooting": [
+    "troubleshooting"
+  ],
+  "Networking": [
+    "networking"
+  ],
+  "Windows": [
+    "windows"
+  ]
+}

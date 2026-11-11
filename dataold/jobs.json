@@ -1,0 +1,69 @@
+[
+  {
+    "title": "Junior Frontend Developer",
+    "company": "Sample Digital Studio",
+    "location": "Tauranga",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Git"
+    ],
+    "description": "Build responsive web pages and reusable user interface components.",
+    "id": 0
+  },
+  {
+    "title": "PHP Web Developer",
+    "company": "Sample Web Solutions",
+    "location": "Auckland",
+    "skills": [
+      "PHP",
+      "SQL",
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "description": "Develop and maintain database driven websites.",
+    "id": 1
+  },
+  {
+    "title": "Python Backend Developer",
+    "company": "Sample Technology Group",
+    "location": "Remote NZ",
+    "skills": [
+      "Python",
+      "SQL",
+      "Git"
+    ],
+    "description": "Build backend services and work with structured data.",
+    "id": 2
+  },
+  {
+    "title": "IT Support Assistant",
+    "company": "Sample Support Team",
+    "location": "Tauranga",
+    "skills": [
+      "Troubleshooting",
+      "Networking",
+      "Windows",
+      "Customer Service"
+    ],
+    "description": "Help users resolve computer and network issues.",
+    "id": 3
+  },
+  {
+    "title": "Junior Full Stack Developer",
+    "company": "Sample Software Lab",
+    "location": "Hamilton",
+    "skills": [
+      "React",
+      "Node.js",
+      "SQL",
+      "JavaScript",
+      "Git"
+    ],
+    "description": "Work on frontend pages and backend services.",
+    "id": 4
+  }
+]
